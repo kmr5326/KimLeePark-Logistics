@@ -186,4 +186,10 @@ public class UserProfileCache {
         redisTemplate.delete(key);
         log.debug("[UserProfileCache] Evicted cache for key={}", key);
     }
+
+    public void evictLocal(Long userId) {
+        String key = buildKey(userId);
+        userProfileLocalCache.invalidate(key);
+        log.debug("[UserProfileCache] Evicted local cache for key={}", key);
+    }
 }
